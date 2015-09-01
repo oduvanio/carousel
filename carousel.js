@@ -8,6 +8,7 @@ window.carousel = {
     direct:true, //Направление вращения по умолчанию
     bg:"rgba(0,0,255,0.2)", //Цвет фона при наведении мышки
     bgfont:"rgba(0,0,0,0.8)", //Цвет текста
+    wider:0.5,//Широкость иллюстраций
     print:function (param, image) {
         var tx=Math.cos((param.L+image.step)*Math.PI);
         var ty=Math.sin((param.L+image.step)*Math.PI);
@@ -118,8 +119,9 @@ window.carousel = {
         param.direct=carousel.direct;
         param.speed=carousel.speed;
         //Размер рамки
-        param.maxwidth=canvas.height/1.5;//WR
         param.maxheight=canvas.height/1.2;//HR
+        param.maxwidth=param.maxheight*carousel.wider;//WR
+
         //Радиус окружности с отступом для смещения рамки вправо и вниз
         param.rx=(canvas.width-param.maxwidth)/2;
         param.ry=(canvas.height-param.maxheight)/2;
