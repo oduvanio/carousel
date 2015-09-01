@@ -1,0 +1,9 @@
+{
+	"name": "itlife/carousel",
+	"description": "Rotating images in canvas",
+	"license": "GPL3",
+	"authors": [{
+		"name": "itlife",
+		"email": "info@itlife-studio.ru"
+	}]
+}

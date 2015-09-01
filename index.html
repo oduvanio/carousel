@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+			#myCanvas {
+				/*background-color: #ffd595;*/
+			}
+		</style>
+		<script src="carousel.js"></script>
+		<script>
+			window.onload = function() {
+
+				var images=[{
+					"href":"?staff/Стюарды",
+					"title":"Стюарды",
+					"src":"images/st.png"
+				},{
+					"href":"?staff/Горничные",
+					"src":"images/gor.png",
+					"title":"Горничные"
+				},{
+					"href":"?staff/Промо персонал",
+					"src":"images/adm.png",
+					"title":"Промо"
+				},{
+					"href":"?staff/Официанты",
+					"src":"images/of.png",
+					"title":"Официанты"
+				},{
+					"href":"?staff/Уборщики",
+					"src":"images/clear.png",
+					"title":"Уборщики"
+				},{
+					"href":"?staff/Разнорабочие",
+					"src":"images/dif.png",
+					"title":"Разнорабочие"
+				},{
+					"href":"?staff/Повара",
+					"src":"images/povar.png",
+					"title":"Повара"
+				},{
+					"href":"?staff/Продавцы",
+					"src":"images/sell.png",
+					"title":"Продавцы"
+				}];
+				var canvas = document.getElementById("myCanvas");
+				carousel.init(canvas, images, function(image){
+					console.log(image.href);
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="1000" height="500" style="width:100%">
+			что то покажет, если не поддерживает канвас.
+		</canvas>
+	</body>
+
+</html>
