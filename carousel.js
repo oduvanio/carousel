@@ -64,6 +64,7 @@ window.carousel = {
         carousel.draw(param);
     },
     draw:function (param) {
+        if (!param.canvas.parentNode) return;//Выход если canvas пропал из DOM
         var over = param.over;
         param.over = false;
         carousel.each(param, function (image) {
@@ -157,7 +158,6 @@ window.carousel = {
             var y=e.offsetY*k;
             var mouse=param.mouse;
             param.mouse={x:x, y:y};
-            console.log(param.speed);
             var delta=mouse.x-param.mouse.x;
             if(!delta)delta=0;
             if(param.mouse.y<param.ry || param.over)delta=delta*-1;//Если выше тригонометрического радиуса то эффект обратный - сверху окружности или снизу
