@@ -40,7 +40,7 @@ window.carousel = {
             param.context.strokeRect(x,image.y,image.minW*image.prop,image.minH*image.prop);
             if (image.title) {
                 param.context.fillStyle = "rgba(255,255,255,0.5)";
-                param.context.fillRect(x,image.y+image.minH*image.prop-40,image.minW*image.prop,image.minH*image.prop);
+                param.context.fillRect(x,image.y+image.minH*image.prop-40,image.minW*image.prop,40);
                 param.context.fillStyle = carousel.bgfont;
                 param.context.fillText(image.title, x+5, image.y+image.minH*image.prop-10);
             }
@@ -102,12 +102,17 @@ window.carousel = {
             param.L=param.L+param.speed/50000;
             if (param.L >= 2) param.L=param.L-2;//Периуд обращения
         }
-        window.requestAnimationFrame(function () {
+        setTimeout(function(){
             carousel.draw(param);
-        });
+        },30);
+        //window.requestAnimationFrame(function () {
+            //carousel.draw(param);
+        //});
     },
     init:function (canvas, images, click) {
         var param={};//Объект для хранения параметров передаётся во все функции
+        if( canvas.carousel ) return;
+        canvas.carousel=param;
         param.canvas=canvas;
         param.click=click;
         param.context = canvas.getContext("2d");
@@ -147,6 +152,7 @@ window.carousel = {
             delta=1.5-l;
             param.speed=0;
             //param.L=param.L+delta;
+            param.context.clearRect(0, 0, param.canvas.width, param.canvas.height);
             param.click(param.over);
         });
         canvas.addEventListener("mouseout",function(e){
@@ -160,18 +166,19 @@ window.carousel = {
             param.mouse={x:x, y:y};
             var delta=mouse.x-param.mouse.x;
             if(!delta)delta=0;
+            var k=5;
             if(param.mouse.y<param.ry || param.over)delta=delta*-1;//Если выше тригонометрического радиуса то эффект обратный - сверху окружности или снизу
             if (param.speed>0) { //По часовой
                 if(delta>0){
-                    param.speed=param.speed+Math.sqrt(delta);
+                    param.speed=param.speed+Math.sqrt(delta)*k;
                 } else {
-                    param.speed=param.speed+delta;
+                    param.speed=param.speed+delta*k;
                 }
             } else { //Против часовой
                 if(delta<0){//Уменьшаем
-                    param.speed=param.speed-Math.sqrt(delta*-1);
+                    param.speed=param.speed-Math.sqrt(delta*-1)*k;
                 } else {
-                    param.speed=param.speed+delta;
+                    param.speed=param.speed+delta*k;
                 }
             }
         });
